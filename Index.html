@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUCK PARTS | Repuestos para Pesados y Agro-Vial — Las Varillas</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        accent: '#FACC15',       /* Amarillo puro corporativo */
+                        accentHover: '#EAB308',
+                        appleDark: '#0A0A0C',
+                        appleCard: '#121214',
+                        appleGray: '#86868B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6.4.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --accent: #FACC15;
+            --bg-pure: #000000;
+            --bg-surface: #121214;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: #000000;
+            color: #F5F5F7;
+            letter-spacing: -0.015em;
+        }
+
+        .apple-headline {
+            letter-spacing: -0.035em;
+            line-height: 1.06;
+        }
+
+        /* Glassmorphism estilo Apple */
+        .apple-nav {
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .bento-card {
+            background: linear-gradient(180deg, #141417 0%, #0C0C0E 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bento-card:hover {
+            border-color: rgba(250, 204, 21, 0.45);
+            transform: translateY(-4px) scale(1.005);
+            box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.9), 0 0 30px -10px rgba(250, 204, 21, 0.15);
+        }
+
+        .apple-pill-input {
+            background: #141417;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s ease;
+        }
+        .apple-pill-input:focus {
+            border-color: #FACC15;
+            background: #18181C;
+            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .pulse-badge {
+            animation: pulseRing 2s infinite;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-float {
+            animation: subtleFloat 4s ease-in-out infinite;
+        }
+
+        /* Contorno sutil para garantizar que las partes negras del logo PNG nunca se pierdan en el fondo negro */
+        .tp-logo-img {
+            filter: drop-shadow(0px 0px 1.5px rgba(255,255,255,0.95)) drop-shadow(0px 0px 1px rgba(255,255,255,0.9)) drop-shadow(0px 4px 16px rgba(250, 204, 21, 0.15));
+        }
+
+        /* Estilos nativos blindados para el Carrusel en Google Apps Script */
+        .carousel-viewport {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        .carousel-track-native {
+            display: flex;
+            width: 100%;
+            height: 480px;
+            transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+        @media (min-width: 640px) {
+            .carousel-track-native {
+                height: 510px;
+            }
+        }
+        .carousel-slide-native {
+            width: 100%;
+            min-width: 100%;
+            flex: 0 0 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FACC15; }
+    </style>
+</head>
+<body class="bg-black text-white font-sans antialiased selection:bg-accent selection:text-black">
+
+    <header class="fixed top-0 left-0 right-0 z-50 apple-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Contenedor de Logo con soporte multi-fuente y réplica exacta integrada para Apps Script -->
+            <div class="flex items-center gap-3">
+                <a href="#inicio" onclick="scrollToSection(event, 'inicio')" class="flex items-center group focus:outline-none" aria-label="TRUCK PARTS - Inicio">
+                    <!-- Imagen PNG cuando se aloja junto a logo.png o se vincula por URL -->
+                    <img src="logo.png" 
+                         alt="TP TRUCK PARTS" 
+                         class="tp-logo-img hidden h-12 sm:h-14 w-auto max-w-[250px] object-contain transition-transform duration-300 group-hover:scale-105"
+                         onload="showLoadedLogo(this)"
+                         onerror="handleLogoFallbackState(this)">
+                    
+                    <!-- Réplica Vectorial Exacta del Logo Oficial TP TRUCK PARTS (Funciona siempre en Google Apps Script) -->
+                    <div class="tp-fallback-badge flex items-center py-1">
+                        <svg viewBox="0 0 580 155" class="h-11 sm:h-13 w-auto drop-shadow-[0_2px_10px_rgba(250,204,21,0.15)] transition-transform duration-300 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Contorno blanco general para contraste sobre fondo negro -->
+                            <g filter="url(#whiteOutlineNav)">
+                                <!-- Letra T Amarilla -->
+                                <path d="M18 18H138L126 48H92L64 122H26L54 48H6L18 18Z" fill="#FACC15"/>
+                                <!-- Letra P Negra con corte diagonal -->
+                                <path d="M99 54H158C170 54 176 47 176 39C176 31 170 25 158 25H142L153 18H172C198 18 212 31 209 52C206 74 186 86 156 86H118L104 122H69L99 54Z" fill="#0B0B0E"/>
+                                <!-- Texto TRUCK en negro pesado -->
+                                <text x="212" y="64" fill="#0B0B0E" font-family="Inter, Arial Black, sans-serif" font-weight="900" font-style="italic" font-size="52" letter-spacing="-1">TRUCK</text>
+                                <!-- Paralelogramo negro de PARTS -->
+                                <polygon points="205,72 478,72 464,122 191,122" fill="#0B0B0E"/>
+                                <!-- Texto PARTS en amarillo -->
+                                <text x="208" y="113" fill="#FACC15" font-family="Inter, Arial Black, sans-serif" font-weight="900" font-style="italic" font-size="44" letter-spacing="1">PARTS</text>
+                                <!-- Doble línea inferior amarilla y negra -->
+                                <polygon points="52,130 462,130 459,137 58,137 48,145 35,145" fill="#FACC15"/>
+                                <polygon points="64,141 475,141 472,147 58,147" fill="#0B0B0E"/>
+                                <!-- Silueta Camión Frontal Derecha -->
+                                <path d="M484 44L532 52C545 55 554 64 557 78L562 112C563 122 560 138 554 145H472L484 44Z" fill="#0B0B0E"/>
+                                <path d="M496 64H544L549 88H493L496 64Z" fill="#FFFFFF"/>
+                                <path d="M499 67H541L545 85H496L499 67Z" fill="#0B0B0E"/>
+                                <!-- Parrilla blanca con ranuras -->
+                                <path d="M500 95H548L545 128H497L500 95Z" fill="#FFFFFF"/>
+                                <rect x="504" y="100" width="38" height="4" fill="#0B0B0E"/>
+                                <rect x="503" y="108" width="38" height="4" fill="#0B0B0E"/>
+                                <rect x="502" y="116" width="38" height="4" fill="#0B0B0E"/>
+                                <!-- Guardabarros y faro -->
+                                <path d="M476 115C486 115 492 128 490 146H482C484 131 480 122 473 122L476 115Z" fill="#FFFFFF"/>
+                            </g>
+                            <defs>
+                                <filter id="whiteOutlineNav" x="-5%" y="-5%" width="110%" height="110%">
+                                    <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"></feMorphology>
+                                    <feFlood flood-color="#FFFFFF" flood-opacity="0.95" result="WHITE"></feFlood>
+                                    <feComposite in="WHITE" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+                                    <feMerge>
+                                        <feMergeNode in="OUTLINE"></feMergeNode>
+                                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Botón para fijar o incrustar el PNG original -->
+                <button type="button" onclick="openLogoModal()" title="Vincular o incrustar archivo de logo PNG" class="text-[11px] bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-accent border border-white/10 rounded-full px-2.5 py-1 transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-image text-accent"></i> <span class="hidden md:inline">Logo PNG</span>
+                </button>
+            </div>
+
+            <!-- Navegación Central Estilo Apple (Con scroll compatible con Google Apps Script) -->
+            <nav class="hidden lg:flex items-center gap-8 text-xs font-medium tracking-wide text-neutral-300">
+                <a href="#inicio" onclick="scrollToSection(event, 'inicio')" class="hover:text-white transition-colors">Visión General</a>
+                <a href="#carrusel" onclick="scrollToSection(event, 'carrusel')" class="hover:text-white transition-colors">Categorías</a>
+                <a href="#especialidades" onclick="scrollToSection(event, 'especialidades')" class="hover:text-white transition-colors">Ingeniería & Stock</a>
+                <a href="#taller" onclick="scrollToSection(event, 'taller')" class="hover:text-white transition-colors">Soporte Técnico</a>
+                <a href="#ubicacion" onclick="scrollToSection(event, 'ubicacion')" class="hover:text-white transition-colors">Las Varillas</a>
+                <a href="#contacto" onclick="scrollToSection(event, 'contacto')" class="hover:text-white transition-colors">Pedido Urgente</a>
+            </nav>
+
+            <!-- Botón Píldora de Acción -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20pedir%20un%20repuesto" target="_blank" rel="noopener noreferrer" class="bg-accent hover:bg-accentHover text-black font-semibold px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 text-xs shadow-lg shadow-accent/10 active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Pedí tu repuesto
+                </a>
+            </div>
+
+            <!-- Botón Menú Móvil -->
+            <button id="menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Abrir menú" class="lg:hidden text-white text-xl focus:outline-none p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-4 text-neutral-200">
+            <a href="#inicio" onclick="scrollToSection(event, 'inicio'); closeMobileMenu();" class="mobile-link hover:text-accent font-medium text-base py-1 border-b border-white/5">Visión General</a>
+            <a href="#carrusel" onclick="scrollToSection(event, 'carrusel'); closeMobileMenu();" class="mobile-link hover:text-accent font-medium text-base py-1 border-b border-white/5">Categorías de Repuestos</a>
+            <a href="#especialidades" onclick="scrollToSection(event, 'especialidades'); closeMobileMenu();" class="mobile-link hover:text-accent font-medium text-base py-1 border-b border-white/5">Ingeniería & Stock</a>
+            <a href="#taller" onclick="scrollToSection(event, 'taller'); closeMobileMenu();" class="mobile-link hover:text-accent font-medium text-base py-1 border-b border-white/5">Soporte Técnico</a>
+            <a href="#ubicacion" onclick="scrollToSection(event, 'ubicacion'); closeMobileMenu();" class="mobile-link hover:text-accent font-medium text-base py-1 border-b border-white/5">Ubicación en Las Varillas</a>
+            <a href="#contacto" onclick="scrollToSection(event, 'contacto'); closeMobileMenu();" class="mobile-link hover:text-accent font-medium text-base py-1">Pedido Urgente</a>
+            <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20pedir%20un%20repuesto" target="_blank" rel="noopener noreferrer" class="bg-accent text-black font-bold py-3.5 rounded-full text-center flex items-center justify-center gap-2 shadow-lg mt-2 text-sm">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Pedí tu repuesto
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="relative pt-32 sm:pt-40 pb-20 sm:pb-28 overflow-hidden bg-black">
+            <!-- Iluminación ambiental radial sutil estilo Apple -->
+            <div class="absolute top-12 left-1/2 -translate-x-1/2 w-[750px] h-[380px] bg-accent/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
+                
+                <!-- Escaparate Central del Logo -->
+                <div class="inline-flex flex-col items-center justify-center">
+                    <div class="p-4 sm:px-8 sm:py-6 rounded-3xl bg-[#111113]/90 border border-white/10 shadow-2xl backdrop-blur-xl inline-flex items-center justify-center">
+                        <img src="logo.png" 
+                             alt="TP TRUCK PARTS" 
+                             class="tp-logo-img hidden h-20 sm:h-28 md:h-32 w-auto max-w-[310px] sm:max-w-[480px] object-contain"
+                             onload="showLoadedLogo(this)"
+                             onerror="handleLogoFallbackState(this)">
+                        
+                        <!-- Réplica Vectorial Hero de Alta Precisión (Idéntica al PNG con borde blanco fino) -->
+                        <div class="tp-fallback-badge flex items-center justify-center px-2">
+                            <svg viewBox="0 0 580 155" class="h-20 sm:h-28 md:h-32 w-auto max-w-full drop-shadow-[0_4px_24px_rgba(250,204,21,0.2)]" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#whiteOutlineHero)">
+                                    <!-- Letra T Amarilla -->
+                                    <path d="M18 18H138L126 48H92L64 122H26L54 48H6L18 18Z" fill="#FACC15"/>
+                                    <!-- Letra P Negra -->
+                                    <path d="M99 54H158C170 54 176 47 176 39C176 31 170 25 158 25H142L153 18H172C198 18 212 31 209 52C206 74 186 86 156 86H118L104 122H69L99 54Z" fill="#0B0B0E"/>
+                                    <!-- Texto TRUCK -->
+                                    <text x="212" y="64" fill="#0B0B0E" font-family="Inter, Arial Black, sans-serif" font-weight="900" font-style="italic" font-size="52" letter-spacing="-1">TRUCK</text>
+                                    <!-- Caja Negra PARTS -->
+                                    <polygon points="205,72 478,72 464,122 191,122" fill="#0B0B0E"/>
+                                    <!-- Texto PARTS Amarillo -->
+                                    <text x="208" y="113" fill="#FACC15" font-family="Inter, Arial Black, sans-serif" font-weight="900" font-style="italic" font-size="44" letter-spacing="1">PARTS</text>
+                                    <!-- Subrayado Doble -->
+                                    <polygon points="52,130 462,130 459,137 58,137 48,145 35,145" fill="#FACC15"/>
+                                    <polygon points="64,141 475,141 472,147 58,147" fill="#0B0B0E"/>
+                                    <!-- Cabina de Camión Derecha -->
+                                    <path d="M484 44L532 52C545 55 554 64 557 78L562 112C563 122 560 138 554 145H472L484 44Z" fill="#0B0B0E"/>
+                                    <path d="M496 64H544L549 88H493L496 64Z" fill="#FFFFFF"/>
+                                    <path d="M499 67H541L545 85H496L499 67Z" fill="#0B0B0E"/>
+                                    <path d="M500 95H548L545 128H497L500 95Z" fill="#FFFFFF"/>
+                                    <rect x="504" y="100" width="38" height="4" fill="#0B0B0E"/>
+                                    <rect x="503" y="108" width="38" height="4" fill="#0B0B0E"/>
+                                    <rect x="502" y="116" width="38" height="4" fill="#0B0B0E"/>
+                                    <path d="M476 115C486 115 492 128 490 146H482C484 131 480 122 473 122L476 115Z" fill="#FFFFFF"/>
+                                </g>
+                                <defs>
+                                    <filter id="whiteOutlineHero" x="-5%" y="-5%" width="110%" height="110%">
+                                        <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2.2"></feMorphology>
+                                        <feFlood flood-color="#FFFFFF" flood-opacity="0.98" result="WHITE"></feFlood>
+                                        <feComposite in="WHITE" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+                                        <feMerge>
+                                            <feMergeNode in="OUTLINE"></feMergeNode>
+                                            <feMergeNode in="SourceGraphic"></feMergeNode>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge Minimalista -->
+                <div>
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-accent text-xs font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                        Stock Inmediato en Las Varillas, Córdoba
+                    </span>
+                </div>
+
+                <!-- Titular Principal Apple Pro -->
+                <div class="space-y-4 max-w-4xl mx-auto">
+                    <h1 class="apple-headline text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight">
+                        Potencia sin pausas. <br class="hidden sm:inline">
+                        <span class="bg-gradient-to-r from-accent via-yellow-300 to-accent bg-clip-text text-transparent">Repuestos para pesados.</span>
+                    </h1>
+                    <p class="text-appleGray text-base sm:text-xl md:text-2xl font-normal max-w-2xl mx-auto leading-relaxed">
+                        Ingeniería original y alternativa para camiones de ruta y maquinaria agro-vial. Precisión técnica en <strong class="text-white font-medium">Irazusta 288, Las Varillas</strong>.
+                    </p>
+                </div>
+
+                <!-- Botones CTA estilo Apple -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                    <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20pedir%20un%20repuesto" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-accent hover:bg-accentHover text-black font-bold px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2.5 text-sm sm:text-base shadow-xl shadow-accent/15 active:scale-95">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Pedí tu repuesto
+                    </a>
+                    <a href="#carrusel" onclick="scrollToSection(event, 'carrusel')" class="w-full sm:w-auto bg-white/[0.07] hover:bg-white/[0.12] text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base border border-white/10 backdrop-blur-md">
+                        Explorar categorías <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="carrusel" class="py-24 bg-[#08080A] border-t border-white/[0.06] relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                
+                <!-- Encabezado de Sección -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div class="space-y-2">
+                        <span class="text-accent font-semibold text-xs uppercase tracking-widest">Catálogo por Segmento</span>
+                        <h2 class="apple-headline text-3xl sm:text-5xl font-bold text-white">Diseñado para cada sistema.</h2>
+                    </div>
+                    <p class="text-appleGray text-sm sm:text-base max-w-md">
+                        Seleccioná un sistema mecánico para explorar los componentes disponibles en nuestro depósito de Las Varillas.
+                    </p>
+                </div>
+
+                <!-- Control Segmentado Estilo macOS / iOS (6 Categorías) -->
+                <div class="p-1.5 rounded-2xl sm:rounded-full bg-[#141417] border border-white/10 flex flex-wrap items-center justify-center gap-1.5 max-w-fit mx-auto" id="category-pills-container">
+                    <button type="button" onclick="window.goToSlide(0)" class="category-pill px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 bg-accent text-black shadow-md cursor-pointer" data-target="0">
+                        <i class="fa-solid fa-compact-disc"></i> Frenos
+                    </button>
+                    <button type="button" onclick="window.goToSlide(1)" class="category-pill px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-neutral-400 hover:text-white cursor-pointer" data-target="1">
+                        <i class="fa-solid fa-arrows-up-down"></i> Amortiguación
+                    </button>
+                    <button type="button" onclick="window.goToSlide(2)" class="category-pill px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-neutral-400 hover:text-white cursor-pointer" data-target="2">
+                        <i class="fa-solid fa-gears"></i> Motor
+                    </button>
+                    <button type="button" onclick="window.goToSlide(3)" class="category-pill px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-neutral-400 hover:text-white cursor-pointer" data-target="3">
+                        <i class="fa-solid fa-oil-can"></i> Filtros & Aceites
+                    </button>
+                    <button type="button" onclick="window.goToSlide(4)" class="category-pill px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-neutral-400 hover:text-white cursor-pointer" data-target="4">
+                        <i class="fa-solid fa-ring"></i> Transmisión
+                    </button>
+                    <button type="button" onclick="window.goToSlide(5)" class="category-pill px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-neutral-400 hover:text-white cursor-pointer" data-target="5">
+                        <i class="fa-solid fa-tractor"></i> Agro-Vial
+                    </button>
+                </div>
+
+                <!-- Ventana Principal del Carrusel Estilo Apple Showcase -->
+                <div class="carousel-viewport rounded-[2rem] bg-[#121215] border border-white/10 shadow-2xl group select-none">
+                    
+                    <!-- Indicador Superior Flotante -->
+                    <div class="absolute top-6 right-6 z-30 bg-black/70 backdrop-blur-xl px-4 py-1.5 rounded-full border border-white/10 text-xs font-semibold text-white">
+                        <span id="slide-counter-current" class="text-accent">01</span> <span class="text-neutral-500">/ 06</span>
+                    </div>
+
+                    <!-- Pista de Diapositivas -->
+                    <div id="carousel-track" class="carousel-track-native" style="transform: translateX(0%);">
+                        
+                        <!-- SLIDE 1: FRENOS -->
+                        <div class="carousel-slide carousel-slide-native flex items-end p-8 sm:p-14">
+                            <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1600&q=80" 
+                                 alt="Frenos y Aire Comprimido" 
+                                 class="absolute inset-0 w-full h-full object-cover object-center opacity-45 transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                            
+                            <div class="relative z-10 max-w-2xl space-y-4">
+                                <span class="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent font-semibold text-xs px-3.5 py-1 rounded-full backdrop-blur-md">
+                                    Seguridad Activa · Wabco & Knorr-Bremse
+                                </span>
+                                <h3 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+                                    Frenos y Aire Comprimido.
+                                </h3>
+                                <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                                    Campanas, cintas de alta fricción, pastillas, pulmones de freno, válvulas moduladoras y secadores de aire para frenadas seguras con carga máxima.
+                                </p>
+                                <div class="pt-2">
+                                    <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20cotizar%20repuestos%20de%20frenos%20para%20pesados" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent hover:bg-accentHover text-black font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition-all">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> Cotizar línea de frenos
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 2: AMORTIGUACIÓN -->
+                        <div class="carousel-slide carousel-slide-native flex items-end p-8 sm:p-14">
+                            <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=1600&q=80" 
+                                 alt="Amortiguación y Suspensión" 
+                                 class="absolute inset-0 w-full h-full object-cover object-center opacity-45 transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                            
+                            <div class="relative z-10 max-w-2xl space-y-4">
+                                <span class="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent font-semibold text-xs px-3.5 py-1 rounded-full backdrop-blur-md">
+                                    Estabilidad en Ruta · Chasis y Cabina
+                                </span>
+                                <h3 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+                                    Amortiguación y Suspensión.
+                                </h3>
+                                <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                                    Amortiguadores hidráulicos reforzados, fuelles neumáticos de suspensión, barras tensoras, bujes y elásticos para absorber el castigo del camino.
+                                </p>
+                                <div class="pt-2">
+                                    <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20cotizar%20amortiguadores%20y%20suspensión" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent hover:bg-accentHover text-black font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition-all">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> Cotizar suspensión
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 3: MOTOR -->
+                        <div class="carousel-slide carousel-slide-native flex items-end p-8 sm:p-14">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1600&q=80" 
+                                 alt="Motor y Overhaul" 
+                                 class="absolute inset-0 w-full h-full object-cover object-center opacity-45 transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                            
+                            <div class="relative z-10 max-w-2xl space-y-4">
+                                <span class="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent font-semibold text-xs px-3.5 py-1 rounded-full backdrop-blur-md">
+                                    Alto Rendimiento · Conjuntos y Turbos
+                                </span>
+                                <h3 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+                                    Motor y Turbos Overhaul.
+                                </h3>
+                                <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                                    Subconjuntos, camisas, pistones, aros, bombas de agua y aceite, turbocompresores y juegos de juntas con tolerancias exactas de fábrica.
+                                </p>
+                                <div class="pt-2">
+                                    <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20repuestos%20de%20motor%20para%20pesados" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent hover:bg-accentHover text-black font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition-all">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> Cotizar partes de motor
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 4: FILTROS Y ACEITES -->
+                        <div class="carousel-slide carousel-slide-native flex items-end p-8 sm:p-14">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80" 
+                                 alt="Filtros y Lubricantes" 
+                                 class="absolute inset-0 w-full h-full object-cover object-center opacity-45 transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                            
+                            <div class="relative z-10 max-w-2xl space-y-4">
+                                <span class="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent font-semibold text-xs px-3.5 py-1 rounded-full backdrop-blur-md">
+                                    Pureza Térmica · Valvoline, Liqui Moly, Wega & Mann
+                                </span>
+                                <h3 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+                                    Filtración y Lubricantes.
+                                </h3>
+                                <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                                    Aceites sintéticos y minerales para servicios severos, aditivos antifricción alemanes Liqui Moly y kits de filtración completa de aire, aceite y combustible.
+                                </p>
+                                <div class="pt-2">
+                                    <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20filtros%20y%20aceites%20para%20pesados" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent hover:bg-accentHover text-black font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition-all">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> Pedir filtros y lubricantes
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 5: TRANSMISIÓN -->
+                        <div class="carousel-slide carousel-slide-native flex items-end p-8 sm:p-14">
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=80" 
+                                 alt="Transmisión y Embragues" 
+                                 class="absolute inset-0 w-full h-full object-cover object-center opacity-45 transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                            
+                            <div class="relative z-10 max-w-2xl space-y-4">
+                                <span class="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent font-semibold text-xs px-3.5 py-1 rounded-full backdrop-blur-md">
+                                    Tracción Continua · Eaton & SKF
+                                </span>
+                                <h3 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+                                    Embragues y Transmisión.
+                                </h3>
+                                <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                                    Kits de embrague Eaton, crapaudinas, rodamientos SKF, crucetas cardánicas y engranajes de diferencial diseñados para alto torque.
+                                </p>
+                                <div class="pt-2">
+                                    <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20repuestos%20de%20embrague%20y%20transmisión" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent hover:bg-accentHover text-black font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition-all">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> Consultar transmisión
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 6: AGRO-VIAL -->
+                        <div class="carousel-slide carousel-slide-native flex items-end p-8 sm:p-14">
+                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1600&q=80" 
+                                 alt="Maquinaria Agro-Vial" 
+                                 class="absolute inset-0 w-full h-full object-cover object-center opacity-45 transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                            
+                            <div class="relative z-10 max-w-2xl space-y-4">
+                                <span class="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent font-semibold text-xs px-3.5 py-1 rounded-full backdrop-blur-md">
+                                    Potencia Productiva · Cosecha y Vialidad
+                                </span>
+                                <h3 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+                                    Maquinaria Agro-Vial.
+                                </h3>
+                                <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                                    Baterías Moura de ciclo pesado, filtros hidráulicos, correas y repuestos críticos para tractores, cosechadoras y retroexcavadoras.
+                                </p>
+                                <div class="pt-2">
+                                    <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20repuestos%20para%20maquinaria%20agrícola%20o%20vial" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent hover:bg-accentHover text-black font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition-all">
+                                        <i class="fa-brands fa-whatsapp text-base"></i> Consultar línea Agro-Vial
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Controles Laterales Redondos Estilo Apple -->
+                    <div class="absolute bottom-8 right-8 z-30 flex items-center gap-3">
+                        <button id="carousel-prev" type="button" onclick="window.prevCarouselSlide()" aria-label="Anterior" class="w-11 h-11 rounded-full bg-white/10 hover:bg-accent text-white hover:text-black backdrop-blur-xl border border-white/15 flex items-center justify-center transition-all duration-300 active:scale-90 cursor-pointer">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
+                        <button id="carousel-next" type="button" onclick="window.nextCarouselSlide()" aria-label="Siguiente" class="w-11 h-11 rounded-full bg-white/10 hover:bg-accent text-white hover:text-black backdrop-blur-xl border border-white/15 flex items-center justify-center transition-all duration-300 active:scale-90 cursor-pointer">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
+                    </div>
+
+                    <!-- Indicadores de Progreso -->
+                    <div id="carousel-dots-container" class="absolute bottom-8 left-8 hidden sm:flex items-center gap-2 z-30 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/10">
+                        <button type="button" onclick="window.goToSlide(0)" class="carousel-dot w-6 h-2 rounded-full bg-accent transition-all duration-300 cursor-pointer" data-index="0" aria-label="Frenos"></button>
+                        <button type="button" onclick="window.goToSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300 cursor-pointer" data-index="1" aria-label="Amortiguación"></button>
+                        <button type="button" onclick="window.goToSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300 cursor-pointer" data-index="2" aria-label="Motor"></button>
+                        <button type="button" onclick="window.goToSlide(3)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300 cursor-pointer" data-index="3" aria-label="Filtros"></button>
+                        <button type="button" onclick="window.goToSlide(4)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300 cursor-pointer" data-index="4" aria-label="Transmisión"></button>
+                        <button type="button" onclick="window.goToSlide(5)" class="carousel-dot w-2 h-2 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300 cursor-pointer" data-index="5" aria-label="Agro-Vial"></button>
+                    </div>
+                </div>
+
+                <!-- Barra Minimalista de Marcas Oficiales -->
+                <div class="pt-6">
+                    <p class="text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-appleGray mb-5">Marcas líderes que respaldan cada kilómetro</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
+                        <div class="py-3 px-4 rounded-2xl bg-[#121215] border border-white/[0.06] text-center text-xs font-black tracking-wider text-neutral-300 hover:border-accent/50 hover:text-accent transition-colors">WEGA</div>
+                        <div class="py-3 px-4 rounded-2xl bg-[#121215] border border-white/[0.06] text-center text-xs font-black tracking-wider text-neutral-300 hover:border-accent/50 hover:text-accent transition-colors">MOURA</div>
+                        <div class="py-3 px-4 rounded-2xl bg-[#121215] border border-white/[0.06] text-center text-xs font-black tracking-wider text-neutral-300 hover:border-accent/50 hover:text-accent transition-colors">VALVOLINE</div>
+                        <div class="py-3 px-4 rounded-2xl bg-[#121215] border border-white/[0.06] text-center text-xs font-black tracking-wider text-neutral-300 hover:border-accent/50 hover:text-accent transition-colors">LIQUI MOLY</div>
+                        <div class="py-3 px-4 rounded-2xl bg-[#121215] border border-white/[0.06] text-center text-xs font-black tracking-wider text-neutral-300 hover:border-accent/50 hover:text-accent transition-colors">EATON</div>
+                        <div class="py-3 px-4 rounded-2xl bg-[#121215] border border-white/[0.06] text-center text-xs font-black tracking-wider text-neutral-300 hover:border-accent/50 hover:text-accent transition-colors">SKF</div>
+                        <div class="py-3 px-4 rounded-2xl bg-[#121215] border border-white/[0.06] text-center text-xs font-black tracking-wider text-neutral-300 hover:border-accent/50 hover:text-accent transition-colors">MANN FILTER</div>
+                        <div class="py-3 px-4 rounded-2xl bg-[#121215] border border-white/[0.06] text-center text-xs font-black tracking-wider text-neutral-300 hover:border-accent/50 hover:text-accent transition-colors">SHELL · YPF</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="especialidades" class="py-28 bg-black relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="text-accent font-semibold text-xs uppercase tracking-widest">Arquitectura de Soluciones</span>
+                    <h2 class="apple-headline text-3xl sm:text-5xl font-bold text-white">Todo lo que tu unidad necesita. En un solo lugar.</h2>
+                    <p class="text-appleGray text-base sm:text-lg">
+                        Piezas testeadas para soportar exigencias térmicas y mecánicas extremas en ruta y campo.
+                    </p>
+                </div>
+
+                <!-- Bento Grid Layout Asimétrico -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    
+                    <!-- Bento Card Grande (7 columnas) -->
+                    <div class="md:col-span-7 bento-card rounded-[2rem] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute -right-12 -top-12 w-56 h-56 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="space-y-4 relative z-10">
+                            <span class="text-xs font-bold uppercase tracking-widest text-accent">Tren Rodante & Seguridad</span>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Control absoluto bajo toneladas de carga.</h3>
+                            <p class="text-appleGray text-sm sm:text-base leading-relaxed max-w-lg">
+                                Proveemos sistemas neumáticos completos, pulmones de freno, campanas balanceadas, rulemanes SKF y amortiguadores pesados que reducen el desgaste de neumáticos y chasis.
+                            </p>
+                        </div>
+                        <div class="pt-8 mt-8 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4 relative z-10">
+                            <div class="flex items-center gap-3 text-xs text-neutral-300">
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Frenos de Aire</span>
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Ejes y Mazas</span>
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Suspensión</span>
+                            </div>
+                            <a href="https://wa.me/5493513782218?text=Hola,%20quiero%20consultar%20por%20tren%20rodante%20y%20frenos" target="_blank" class="text-accent text-xs font-bold flex items-center gap-1.5 hover:underline">
+                                Consultar stock <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bento Card Lateral (5 columnas) -->
+                    <div class="md:col-span-5 bento-card rounded-[2rem] p-8 sm:p-10 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-2xl bg-accent text-black flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-oil-can"></i>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-appleGray block">Química & Filtración</span>
+                            <h3 class="text-2xl font-bold text-white tracking-tight">Protección molecular para tu motor.</h3>
+                            <p class="text-appleGray text-sm leading-relaxed">
+                                Lubricantes Valvoline, Shell e YPF junto con aditivos alemanes Liqui Moly y filtros originales Wega y Mann Filter.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-white/[0.06] flex items-center justify-between text-xs text-accent font-semibold">
+                            <span>Rendimiento Extendido</span>
+                            <i class="fa-solid fa-shield-halved text-base"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bento Card Inferior Izquierda (5 columnas) -->
+                    <div class="md:col-span-5 bento-card rounded-[2rem] p-8 sm:p-10 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-2xl bg-white/10 text-accent flex items-center justify-center text-xl border border-white/10">
+                                <i class="fa-solid fa-car-battery"></i>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-appleGray block">Energía & Arranque</span>
+                            <h3 class="text-2xl font-bold text-white tracking-tight">Baterías Moura y Electricidad Pesada.</h3>
+                            <p class="text-appleGray text-sm leading-relaxed">
+                                Baterías de alta capacidad de arranque en frío, alternadores, burros de arranque e iluminación LED reglamentaria para ruta.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-white/[0.06] flex items-center justify-between text-xs text-accent font-semibold">
+                            <span>Garantía Oficial</span>
+                            <i class="fa-solid fa-bolt text-base"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bento Card Inferior Derecha (7 columnas) -->
+                    <div class="md:col-span-7 bento-card rounded-[2rem] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+                        <div class="space-y-4 relative z-10">
+                            <span class="text-xs font-bold uppercase tracking-widest text-accent">División Agro-Vial</span>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Porque la cosecha no espera.</h3>
+                            <p class="text-appleGray text-sm sm:text-base leading-relaxed max-w-lg">
+                                Embragues Eaton, bombas hidráulicas, crucetas reforzadas y correas agrícolas para tractores y cosechadoras trabajando a destajo en Las Varillas y toda la región.
+                            </p>
+                        </div>
+                        <div class="pt-8 mt-8 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4 relative z-10">
+                            <div class="flex items-center gap-3 text-xs text-neutral-300">
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Embragues Eaton</span>
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Hidráulica</span>
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Rodamientos SKF</span>
+                            </div>
+                            <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20repuestos%20de%20la%20división%20Agro-Vial" target="_blank" class="text-accent text-xs font-bold flex items-center gap-1.5 hover:underline">
+                                Pedir cotización <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="taller" class="py-24 bg-[#08080A] border-t border-white/[0.06]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bento-card rounded-[2.5rem] p-8 sm:p-14 border border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-widest">
+                            <i class="fa-solid fa-camera"></i> Identificación Inteligente de Piezas
+                        </span>
+                        <h2 class="apple-headline text-3xl sm:text-5xl font-bold text-white">
+                            Sacale una foto a la muestra. Nosotros hacemos el resto.
+                        </h2>
+                        <p class="text-appleGray text-base sm:text-lg leading-relaxed">
+                            ¿No tenés el código OEM a mano? Envianos por WhatsApp una foto del repuesto desmontado, del número grabado en la pieza o del chasis del camión. Nuestro equipo técnico verifica equivalencias al instante.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <a href="https://wa.me/5493513782218?text=Hola,%20te%20envío%20foto%20de%20una%20muestra%20para%20cotizar" target="_blank" rel="noopener noreferrer" class="bg-accent hover:bg-accentHover text-black font-bold px-7 py-3.5 rounded-full transition-all text-sm flex items-center gap-2 shadow-lg">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Enviar foto por WhatsApp
+                            </a>
+                            <a href="#contacto" onclick="scrollToSection(event, 'contacto')" class="bg-white/5 hover:bg-white/10 text-white font-semibold px-7 py-3.5 rounded-full transition-all text-sm border border-white/10">
+                                Usar formulario con adjunto
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Simulador Visual Estilo iOS Camera Viewfinder -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-black rounded-3xl p-6 border border-white/10 space-y-5 relative shadow-2xl">
+                            <div class="flex items-center justify-between text-xs text-appleGray">
+                                <span class="flex items-center gap-1.5 text-white font-medium"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Soporte Técnico Activo</span>
+                                <span class="text-accent font-mono">351 3782218</span>
+                            </div>
+                            <!-- Marco de Escaneo -->
+                            <div class="relative h-44 rounded-2xl bg-[#111114] border border-dashed border-accent/40 flex flex-col items-center justify-center p-4 text-center">
+                                <i class="fa-solid fa-gears text-4xl text-accent mb-3"></i>
+                                <p class="text-xs font-semibold text-white">Código OEM / Muestra Física</p>
+                                <p class="text-[11px] text-appleGray mt-1">Verificación de catálogos originales y alternativos en minutos</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="p-3 rounded-xl bg-[#121215] border border-white/5">
+                                    <span class="text-appleGray block text-[10px]">Precisión</span>
+                                    <strong class="text-white">Equivalencia Exacta</strong>
+                                </div>
+                                <div class="p-3 rounded-xl bg-[#121215] border border-white/5">
+                                    <span class="text-appleGray block text-[10px]">Despacho</span>
+                                    <strong class="text-accent">Retiro o Envío Rápido</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="ubicacion" class="py-28 bg-black border-t border-white/[0.06]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-accent font-semibold text-xs uppercase tracking-widest">Punto Estratégico</span>
+                        <h2 class="apple-headline text-3xl sm:text-5xl font-bold text-white">Visitanos en Las Varillas.</h2>
+                        <p class="text-appleGray text-base leading-relaxed">
+                            Atención personalizada en mostrador para transportistas, mecánicos y productores agropecuarios. Retirá tu pedido en el acto.
+                        </p>
+
+                        <div class="space-y-3 pt-2">
+                            <div class="bento-card rounded-2xl p-5 flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-accent/15 text-accent flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-semibold text-sm">Dirección</h3>
+                                    <p class="text-appleGray text-xs mt-0.5">Irazusta 288, Las Varillas, Córdoba (Argentina)</p>
+                                    <a href="https://maps.google.com/?q=Irazusta+288,+Las+Varillas,+Cordoba" target="_blank" class="text-accent text-xs font-semibold inline-flex items-center gap-1 mt-2 hover:underline">
+                                        Cómo llegar en Google Maps <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="bento-card rounded-2xl p-5 flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-accent/15 text-accent flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-semibold text-sm">Línea Directa de Ventas</h3>
+                                    <p class="text-appleGray text-xs mt-0.5">+54 9 351 3782218</p>
+                                    <a href="https://wa.me/5493513782218?text=Hola,%20consulta%20desde%20la%20web%20de%20TRUCK%20PARTS" target="_blank" class="text-accent text-xs font-semibold inline-flex items-center gap-1 mt-2 hover:underline">
+                                        Iniciar conversación ahora <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contenedor de Mapa Estilo Apple Maps Card -->
+                    <div class="lg:col-span-7 bento-card rounded-[2rem] p-3 border border-white/10 shadow-2xl">
+                        <div class="w-full h-[380px] sm:h-[420px] rounded-[1.5rem] overflow-hidden relative bg-neutral-900">
+                            <iframe 
+                                title="Mapa de TRUCK PARTS en Irazusta 288, Las Varillas"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; filter: contrast(1.05);" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://maps.google.com/maps?q=Irazusta+288,+Las+Varillas,+Cordoba&t=&z=16&ie=UTF8&iwloc=&output=embed">
+                            </iframe>
+                        </div>
+                        <div class="px-4 py-3 flex items-center justify-between text-xs">
+                            <span class="text-neutral-300 font-medium"><i class="fa-solid fa-circle-check text-accent mr-1.5"></i> TP TRUCK PARTS · Irazusta 288, Las Varillas</span>
+                            <a href="https://maps.google.com/?q=Irazusta+288,+Las+Varillas,+Cordoba" target="_blank" class="bg-white/10 hover:bg-accent hover:text-black text-white font-semibold px-4 py-1.5 rounded-full transition-colors">
+                                Abrir GPS
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contacto" class="py-28 bg-[#08080A] border-t border-white/[0.06] relative">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="bento-card rounded-[2.5rem] p-8 sm:p-12 border border-white/10 shadow-2xl">
+                    <div class="text-center space-y-3 mb-10">
+                        <span class="text-accent font-semibold text-xs uppercase tracking-widest">Solicitud Express</span>
+                        <h2 class="apple-headline text-3xl sm:text-4xl font-bold text-white">¿Necesitás un repuesto urgente?</h2>
+                        <p class="text-appleGray text-sm sm:text-base">
+                            Completá los datos de tu unidad y te derivamos automáticamente a nuestro WhatsApp oficial (<strong class="text-white">351 3782218</strong>) con el pedido listo.
+                        </p>
+                    </div>
+
+                    <form id="whatsapp-form" onsubmit="handleOrderSubmission(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="form-nombre" class="block text-xs font-medium text-neutral-300 mb-2">Nombre o Empresa *</label>
+                                <input type="text" id="form-nombre" required class="w-full apple-pill-input rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none" placeholder="Ej. Transporte Gómez">
+                            </div>
+                            <div>
+                                <label for="form-telefono" class="block text-xs font-medium text-neutral-300 mb-2">Tu Teléfono *</label>
+                                <input type="tel" id="form-telefono" required class="w-full apple-pill-input rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none" placeholder="Ej. 3533 401234">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="form-vehiculo" class="block text-xs font-medium text-neutral-300 mb-2">Camión / Máquina y Modelo *</label>
+                                <input type="text" id="form-vehiculo" required class="w-full apple-pill-input rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none" placeholder="Ej. Scania R440 / Tractor Case">
+                            </div>
+                            <div>
+                                <label for="form-categoria" class="block text-xs font-medium text-neutral-300 mb-2">Sistema / Categoría *</label>
+                                <select id="form-categoria" class="w-full apple-pill-input rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none cursor-pointer">
+                                    <option value="Frenos y Aire Comprimido">Frenos y Aire Comprimido</option>
+                                    <option value="Amortiguación y Suspensión">Amortiguación y Suspensión</option>
+                                    <option value="Motor y Overhaul">Motor y Overhaul</option>
+                                    <option value="Filtros y Lubricantes">Filtros y Lubricantes</option>
+                                    <option value="Transmisión y Embragues">Transmisión y Embragues</option>
+                                    <option value="Maquinaria Agro-Vial">Maquinaria Agro-Vial</option>
+                                    <option value="Otra Consulta">Otra consulta</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="form-mensaje" class="block text-xs font-medium text-neutral-300 mb-2">Detalle del Repuesto o Código de Pieza *</label>
+                            <textarea rows="3" id="form-mensaje" required class="w-full apple-pill-input rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none resize-none" placeholder="Describí el repuesto que buscás o el número de pieza si lo tenés..."></textarea>
+                        </div>
+
+                        <!-- Selector de Foto de Muestra con Vista Previa -->
+                        <div>
+                            <label for="form-imagen" class="block text-xs font-medium text-neutral-300 mb-2">Foto de la pieza o muestra (Opcional)</label>
+                            <div class="apple-pill-input rounded-2xl p-3.5 flex items-center gap-3">
+                                <i class="fa-solid fa-camera text-accent text-lg pl-1"></i>
+                                <input type="file" id="form-imagen" accept="image/*" class="w-full text-xs text-appleGray file:mr-3 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-accent file:text-black hover:file:bg-accentHover cursor-pointer">
+                            </div>
+
+                            <div id="image-preview-box" class="hidden mt-3 p-3 rounded-2xl bg-black/80 border border-white/10 flex items-center justify-between">
+                                <div class="flex items-center gap-3 overflow-hidden">
+                                    <img id="img-preview-thumb" src="" alt="Vista previa" class="w-12 h-12 object-cover rounded-xl border border-white/15 shrink-0">
+                                    <div class="truncate">
+                                        <p id="img-preview-name" class="text-xs text-white font-medium truncate">muestra.jpg</p>
+                                        <span class="text-[11px] text-accent font-medium"><i class="fa-solid fa-check-circle"></i> Imagen lista para adjuntar en el chat</span>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="clearSelectedImage()" class="text-neutral-400 hover:text-red-400 text-xs px-2.5 py-1">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-accent hover:bg-accentHover text-black font-bold py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer shadow-xl shadow-accent/15 text-base active:scale-[0.99]">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Enviar pedido por WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal de Confirmación de Envío a WhatsApp -->
+            <div id="modal-whatsapp" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl hidden items-center justify-center p-4">
+                <div class="bento-card rounded-[2rem] p-7 sm:p-9 max-w-md w-full shadow-2xl space-y-5 text-center border border-white/15">
+                    <div class="w-14 h-14 rounded-full bg-accent/15 border border-accent/30 text-accent flex items-center justify-center mx-auto text-2xl">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="text-2xl font-bold text-white">Pedido Listo</h3>
+                        <p class="text-xs text-appleGray">Conectando con atención al cliente (<strong class="text-white">351 3782218</strong>)</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-black/70 border border-white/10 text-left text-xs space-y-1.5 text-neutral-300">
+                        <p><span class="text-appleGray">Cliente:</span> <strong id="modal-resumen-nombre" class="text-white"></strong></p>
+                        <p><span class="text-appleGray">Unidad:</span> <strong id="modal-resumen-vehiculo" class="text-accent"></strong></p>
+                        <p><span class="text-appleGray">Categoría:</span> <span id="modal-resumen-categoria" class="text-white"></span></p>
+                    </div>
+                    <div id="modal-alerta-foto" class="hidden p-3.5 rounded-2xl bg-accent/10 border border-accent/30 text-xs text-left space-y-1">
+                        <p class="text-accent font-semibold"><i class="fa-solid fa-paperclip"></i> Adjuntá tu foto en el chat:</p>
+                        <p class="text-[11px] text-neutral-300">Cuando se abra WhatsApp, tocá el ícono de cámara o clip para enviar la foto seleccionada.</p>
+                    </div>
+                    <div class="space-y-2.5 pt-2">
+                        <a id="btn-abrir-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-accent hover:bg-accentHover text-black font-bold py-3.5 px-6 rounded-full transition-all flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Abrir conversación en WhatsApp
+                        </a>
+                        <button type="button" id="btn-copiar-mensaje" onclick="copiarMensajeGenerado()" class="w-full py-2.5 px-4 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-medium transition-colors">
+                            <i class="fa-regular fa-copy mr-1"></i> Copiar texto del pedido
+                        </button>
+                        <button type="button" onclick="cerrarModalWhatsApp()" class="w-full py-1.5 text-xs text-appleGray hover:text-white">
+                            Cerrar ventana
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-logo-config" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-xl hidden items-center justify-center p-4">
+        <div class="bento-card rounded-[2rem] p-6 sm:p-8 max-w-lg w-full border border-white/15 space-y-5">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-image text-accent"></i> Incrustar PNG para Google Apps Script
+                </h3>
+                <button type="button" onclick="closeLogoModal()" class="text-appleGray hover:text-white text-lg cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-xs text-appleGray leading-relaxed">
+                En Google Apps Script los archivos locales de tu PC no se suben automáticamente. Podés pegar el enlace directo <code class="text-accent">https://i.ibb.co/...</code> o seleccionar tu archivo PNG acá abajo:
+            </p>
+
+            <!-- Opción 1: Subir el archivo desde la PC/Celular -->
+            <div class="p-4 rounded-2xl bg-black/70 border border-white/10 space-y-2.5">
+                <span class="text-xs font-bold text-accent block">Opción 1: Seleccioná el archivo PNG de tu PC</span>
+                <input type="file" id="local-logo-upload" accept="image/*" class="w-full text-xs text-appleGray file:mr-3 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-accent file:text-black cursor-pointer">
+                <div id="base64-export-box" class="hidden pt-2 space-y-2 border-t border-white/10 mt-2">
+                    <p class="text-[11px] text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle"></i> ¡Logo aplicado! Si querés que quede fijo en Google Apps Script para todos los visitantes, copiá este código y pegalo en la constante <code class="text-white">HARDCODED_LOGO_URL</code> del script:</p>
+                    <button type="button" id="btn-copy-base64" onclick="copyLogoBase64ForAppsScript()" class="w-full bg-white/10 hover:bg-accent hover:text-black text-white text-xs font-bold py-2 px-3 rounded-xl transition-colors">
+                        <i class="fa-regular fa-copy mr-1"></i> Copiar código Base64 del Logo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Opción 2: Pegar enlace directo i.ibb.co -->
+            <div class="p-4 rounded-2xl bg-black/70 border border-white/10 space-y-2.5">
+                <span class="text-xs font-bold text-white block">Opción 2: Pegar Enlace Directo (<code class="text-accent">https://i.ibb.co/...</code>)</span>
+                <p class="text-[11px] text-appleGray">En <a href="https://ibb.co/nqjVSt38" target="_blank" class="text-accent underline">ibb.co/nqjVSt38</a>, hacé clic derecho sobre tu logo y elegí <strong>"Copiar dirección de imagen"</strong>.</p>
+                <div class="flex gap-2">
+                    <input type="url" id="direct-logo-url-input" placeholder="https://i.ibb.co/..." class="w-full apple-pill-input rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                    <button type="button" onclick="saveDirectLogoUrl()" class="bg-accent text-black font-bold px-4 py-2 rounded-xl text-xs shrink-0 hover:bg-accentHover cursor-pointer">
+                        Aplicar
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="button" onclick="closeLogoModal()" class="text-xs text-appleGray hover:text-white px-4 py-2 cursor-pointer">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-black text-appleGray py-14 border-t border-white/[0.08] text-xs">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <img src="logo.png" 
+                         alt="TP TRUCK PARTS" 
+                         class="tp-logo-img hidden h-10 w-auto object-contain"
+                         onload="showLoadedLogo(this)"
+                         onerror="handleLogoFallbackState(this)">
+                    <div class="tp-fallback-badge flex items-center gap-2">
+                        <span class="text-accent font-black text-xl italic">TP</span>
+                        <span class="text-white font-bold text-sm tracking-tight">TRUCK <span class="text-accent">PARTS</span></span>
+                    </div>
+                </div>
+                <p class="text-appleGray leading-relaxed">
+                    Repuestos originales y alternativos para camiones y maquinaria agro-vial.<br>
+                    Irazusta 288, Las Varillas, Córdoba.
+                </p>
+            </div>
+
+            <div class="space-y-1 md:text-center">
+                <p class="text-white font-semibold">Contacto Directo</p>
+                <p>WhatsApp: <a href="https://wa.me/5493513782218" target="_blank" class="text-accent hover:underline">351 3782218</a></p>
+                <p>Irazusta 288 — Las Varillas, Cba.</p>
+            </div>
+
+            <div class="md:text-right">
+                <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20pedir%20un%20repuesto" target="_blank" class="inline-flex items-center gap-2 bg-white/10 hover:bg-accent text-white hover:text-black font-semibold px-5 py-2.5 rounded-full transition-all">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Pedí tu repuesto
+                </a>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
+            <p>&copy; 2026 TP TRUCK PARTS. Todos los derechos reservados.</p>
+            <p>Las Varillas, Provincia de Córdoba, Argentina.</p>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante de WhatsApp (Inferior Izquierda con Badge Rojo "1" y Tooltip) -->
+    <div class="fixed bottom-6 left-6 z-50 flex items-center group">
+        <a href="https://wa.me/5493513782218?text=Hola,%20necesito%20pedir%20un%20repuesto" target="_blank" aria-label="Pedí tu repuesto por WhatsApp" class="relative bg-[#25D366] hover:bg-[#20bd5a] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl transition-transform duration-300 group-hover:scale-105">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="absolute -top-1 -right-1 bg-red-600 text-white text-[11px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-black pulse-badge">1</span>
+        </a>
+        <div class="ml-3 bg-[#141417]/95 backdrop-blur-xl text-white font-medium text-xs py-2.5 px-4 rounded-full shadow-2xl border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap">
+            Hola, escríbenos para ayudarte · <span class="text-accent font-semibold">Pedí tu repuesto</span>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           CONFIGURACIÓN BLINDADA PARA GOOGLE APPS SCRIPT (SIN ERRORES DE SANDBOX)
+           ========================================================================== */
+        // Si copiás el enlace directo https://i.ibb.co/... o el Base64, podés pegarlo entre las comillas de abajo:
+        const HARDCODED_LOGO_URL = "";
+        const IMGBB_VIEWER_URL = "https://ibb.co/nqjVSt38";
+        let currentBase64Logo = "";
+
+        // Funciones seguras para evitar que localStorage detenga el script en Google Apps Script
+        function safeGetStorage(key) {
+            try {
+                return window.localStorage ? window.localStorage.getItem(key) : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function safeSetStorage(key, val) {
+            try {
+                if (window.localStorage) window.localStorage.setItem(key, val);
+            } catch (e) {
+                // Ignorar restricción de iframe en Google Apps Script
+            }
+        }
+
+        // Navegación suave compatible con el iframe de Google Apps Script
+        function scrollToSection(event, sectionId) {
+            if (event) event.preventDefault();
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Mostrar la imagen PNG real y ocultar el SVG cuando carga con éxito
+        function showLoadedLogo(imgEl) {
+            if (!imgEl || !imgEl.getAttribute('src')) return;
+            imgEl.classList.remove('hidden');
+            const wrapper = imgEl.parentElement;
+            if (wrapper) {
+                const badge = wrapper.querySelector('.tp-fallback-badge');
+                if (badge) badge.classList.add('hidden');
+            }
+        }
+
+        function handleLogoFallbackState(imgEl) {
+            if (!imgEl) return;
+            imgEl.classList.add('hidden');
+            const wrapper = imgEl.parentElement;
+            if (wrapper) {
+                const badge = wrapper.querySelector('.tp-fallback-badge');
+                if (badge) badge.classList.remove('hidden');
+            }
+        }
+
+        function applyLogoUrlToAll(url) {
+            if (!url || typeof url !== 'string' || url.trim() === '') return;
+            document.querySelectorAll('.tp-logo-img').forEach(img => {
+                img.src = url.trim();
+            });
+        }
+
+        // 1. Cargar el logo desde HARDCODED_LOGO_URL o desde almacenamiento seguro
+        const initialLogo = HARDCODED_LOGO_URL || safeGetStorage('tp_custom_logo_data');
+        if (initialLogo) {
+            applyLogoUrlToAll(initialLogo);
+        }
+
+        // 2. Resolver automáticamente la URL directa i.ibb.co desde https://ibb.co/nqjVSt38
+        async function resolveImgBbDirectUrl() {
+            if (HARDCODED_LOGO_URL || safeGetStorage('tp_custom_logo_data')) return;
+            const endpoints = [
+                `https://api.allorigins.win/get?url=${encodeURIComponent(IMGBB_VIEWER_URL)}`,
+                `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(IMGBB_VIEWER_URL)}`
+            ];
+
+            for (const endpoint of endpoints) {
+                try {
+                    const res = await fetch(endpoint);
+                    if (!res.ok) continue;
+                    const textData = await res.text();
+                    const match = textData.match(/https?:\\?\/\\?\/i\.ibb\.co\\?\/[a-zA-Z0-9_\-\/]+\.(?:png|jpg|jpeg|webp)/i);
+                    if (match && match[0]) {
+                        const cleanUrl = match[0].replace(/\\/g, '');
+                        safeSetStorage('tp_custom_logo_data', cleanUrl);
+                        applyLogoUrlToAll(cleanUrl);
+                        return;
+                    }
+                } catch (err) {
+                    // Continuar silenciosamente
+                }
+            }
+        }
+        resolveImgBbDirectUrl();
+
+        // Funciones del Modal Configurador de Logo
+        function openLogoModal() {
+            const modal = document.getElementById('modal-logo-config');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeLogoModal() {
+            const modal = document.getElementById('modal-logo-config');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function saveDirectLogoUrl() {
+            const input = document.getElementById('direct-logo-url-input');
+            if (input && input.value.trim()) {
+                const url = input.value.trim();
+                safeSetStorage('tp_custom_logo_data', url);
+                applyLogoUrlToAll(url);
+                closeLogoModal();
+            }
+        }
+
+        function copyLogoBase64ForAppsScript() {
+            if (!currentBase64Logo) return;
+            const textarea = document.createElement('textarea');
+            textarea.value = currentBase64Logo;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                const btn = document.getElementById('btn-copy-base64');
+                if (btn) {
+                    btn.innerHTML = `<i class="fa-solid fa-check mr-1"></i> ¡Copiado! Pegalo en HARDCODED_LOGO_URL`;
+                }
+            } catch (e) {}
+            document.body.removeChild(textarea);
+        }
+
+        const localLogoInput = document.getElementById('local-logo-upload');
+        if (localLogoInput) {
+            localLogoInput.addEventListener('change', (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        const dataUrl = evt.target.result;
+                        currentBase64Logo = dataUrl;
+                        safeSetStorage('tp_custom_logo_data', dataUrl);
+                        applyLogoUrlToAll(dataUrl);
+                        const exportBox = document.getElementById('base64-export-box');
+                        if (exportBox) exportBox.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+        }
+
+        // Menú móvil con funciones globales para Apps Script
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+        }
+
+        // Vista previa de imagen en el formulario de repuestos
+        const inputFile = document.getElementById('form-imagen');
+        const previewBox = document.getElementById('image-preview-box');
+        const previewThumb = document.getElementById('img-preview-thumb');
+        const previewName = document.getElementById('img-preview-name');
+
+        if (inputFile) {
+            inputFile.addEventListener('change', () => {
+                if (inputFile.files && inputFile.files[0]) {
+                    const file = inputFile.files[0];
+                    previewName.textContent = file.name;
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewThumb.src = e.target.result;
+                        previewBox.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    clearSelectedImage();
+                }
+            });
+        }
+
+        function clearSelectedImage() {
+            if (inputFile) inputFile.value = "";
+            if (previewBox) previewBox.classList.add('hidden');
+        }
+
+        // =========================================================================
+        // CARRUSEL APPLE SHOWCASE (100% COMPATIBLE CON GOOGLE APPS SCRIPT)
+        // =========================================================================
+        let currentSlideIndex = 0;
+        let carouselAutoTimer = null;
+        const TOTAL_SLIDES = 6;
+
+        window.updateCarouselView = function(index) {
+            const track = document.getElementById('carousel-track');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const pills = document.querySelectorAll('.category-pill');
+            const counterCurrent = document.getElementById('slide-counter-current');
+
+            currentSlideIndex = ((index % TOTAL_SLIDES) + TOTAL_SLIDES) % TOTAL_SLIDES;
+
+            if (track) {
+                track.style.transform = 'translateX(-' + (currentSlideIndex * 100) + '%)';
+            }
+
+            if (counterCurrent) {
+                counterCurrent.textContent = String(currentSlideIndex + 1).padStart(2, '0');
+            }
+
+            dots.forEach((dot, idx) => {
+                dot.className = idx === currentSlideIndex
+                    ? 'carousel-dot w-6 h-2 rounded-full bg-accent transition-all duration-300 cursor-pointer'
+                    : 'carousel-dot w-2 h-2 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300 cursor-pointer';
+            });
+
+            pills.forEach((pill, idx) => {
+                pill.className = idx === currentSlideIndex
+                    ? 'category-pill px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 bg-accent text-black shadow-md cursor-pointer'
+                    : 'category-pill px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-neutral-400 hover:text-white cursor-pointer';
+            });
+        };
+
+        window.goToSlide = function(index) {
+            window.updateCarouselView(Number(index) || 0);
+            window.resetCarouselTimer();
+        };
+
+        window.nextCarouselSlide = function() {
+            window.updateCarouselView(currentSlideIndex + 1);
+            window.resetCarouselTimer();
+        };
+
+        window.prevCarouselSlide = function() {
+            window.updateCarouselView(currentSlideIndex - 1);
+            window.resetCarouselTimer();
+        };
+
+        window.resetCarouselTimer = function() {
+            if (carouselAutoTimer) clearInterval(carouselAutoTimer);
+            carouselAutoTimer = setInterval(() => {
+                window.updateCarouselView(currentSlideIndex + 1);
+            }, 5500);
+        };
+
+        // Inicializar soporte táctil y auto-rotación
+        (function initCarouselEvents() {
+            const track = document.getElementById('carousel-track');
+            let touchStartX = 0;
+            if (track) {
+                track.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                track.addEventListener('touchend', (e) => {
+                    const diff = touchStartX - e.changedTouches[0].screenX;
+                    if (diff > 45) window.nextCarouselSlide();
+                    else if (diff < -45) window.prevCarouselSlide();
+                }, { passive: true });
+            }
+            window.updateCarouselView(0);
+            window.resetCarouselTimer();
+        })();
+
+        // Envío del Formulario a WhatsApp (3513782218)
+        let ultimoTextoGenerado = "";
+
+        function handleOrderSubmission(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('form-nombre').value.trim();
+            const telefono = document.getElementById('form-telefono').value.trim();
+            const vehiculo = document.getElementById('form-vehiculo').value.trim();
+            const categoria = document.getElementById('form-categoria').value.trim();
+            const mensaje = document.getElementById('form-mensaje').value.trim();
+            const fileInput = document.getElementById('form-imagen');
+            const hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+
+            const notaFoto = hasFile ? `\n\n📷 *(Adjunto foto/muestra de la pieza a continuación)*` : "";
+            const text = `🚚 *SOLICITUD DE REPUESTO - TRUCK PARTS*\n` +
+                         `━━━━━━━━━━━━━━━━━━━━\n` +
+                         `👤 *Cliente:* ${nombre}\n` +
+                         `📱 *Teléfono:* ${telefono}\n` +
+                         `🚛 *Unidad:* ${vehiculo}\n` +
+                         `⚙️ *Sistema:* ${categoria}\n` +
+                         `📝 *Detalle:* ${mensaje}${notaFoto}\n` +
+                         `━━━━━━━━━━━━━━━━━━━━\n` +
+                         `📍 *Las Varillas, Cba. (Irazusta 288)*`;
+
+            ultimoTextoGenerado = text;
+            const whatsappUrl = `https://wa.me/5493513782218?text=${encodeURIComponent(text)}`;
+
+            document.getElementById('modal-resumen-nombre').textContent = nombre;
+            document.getElementById('modal-resumen-vehiculo').textContent = vehiculo;
+            document.getElementById('modal-resumen-categoria').textContent = categoria;
+
+            const btnAbrir = document.getElementById('btn-abrir-whatsapp');
+            if (btnAbrir) btnAbrir.href = whatsappUrl;
+
+            const alertaFoto = document.getElementById('modal-alerta-foto');
+            if (alertaFoto) alertaFoto.classList.toggle('hidden', !hasFile);
+
+            const modal = document.getElementById('modal-whatsapp');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+
+            try {
+                const a = document.createElement('a');
+                a.href = whatsappUrl;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } catch (e) {
+                window.open(whatsappUrl, '_blank');
+            }
+        }
+
+        function copiarMensajeGenerado() {
+            if (!ultimoTextoGenerado) return;
+            const textarea = document.createElement('textarea');
+            textarea.value = ultimoTextoGenerado;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                const btn = document.getElementById('btn-copiar-mensaje');
+                if (btn) {
+                    btn.innerHTML = `<i class="fa-solid fa-check text-accent mr-1"></i> ¡Copiado al portapapeles!`;
+                    setTimeout(() => {
+                        btn.innerHTML = `<i class="fa-regular fa-copy mr-1"></i> Copiar texto del pedido`;
+                    }, 2500);
+                }
+            } catch (e) {}
+            document.body.removeChild(textarea);
+        }
+
+        function cerrarModalWhatsApp() {
+            const modal = document.getElementById('modal-whatsapp');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+    </script>
+</body>
+</html>
